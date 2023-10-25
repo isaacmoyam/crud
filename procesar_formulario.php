@@ -23,11 +23,9 @@
                     }
                     break;
                 case 'update':
-                    if(!empty($_POST['id']) && !empty($_POST['nombre']) && !empty($_POST['firma'])){
+                    if(!empty($_POST['id'])){
                         $id = $_POST['id'];
-                        $nombre = $_POST['nombre'];
-                        $firma = $_POST['firma'];
-                        $objeto->actualizar($id,$nombre,$firma);
+                        $objeto->consultar($id);
                     }else{
                         echo "No se ha podido modificar el jesuita porque falta un campo";
                     }
@@ -35,7 +33,13 @@
                 case 'delete':
                     if(!empty($_POST['id'])){
                         $id = $_POST['id'];
-                        $objeto->eliminar($id);
+                        echo "<h3>¿Seguro que quieres borrar al jesuita con id: ".$id."?</h3>";
+                        echo "<form action='actualizar_borrar.php' method='POST'>";
+                        echo "<input type='submit' name='si' value='Si'>";
+                        echo "<input type='submit' name='no' value='No'>";
+                        echo '<input type="hidden" name="opcion" value="delete"><br><br>';
+                        echo '<input type="hidden" name="id" value="'.$id.'"><br><br>';
+                        echo "</form>";
                     }else{
                         echo "No se ha podido borrar el jesuita porque falta un campo";
                     }
