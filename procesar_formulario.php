@@ -12,8 +12,12 @@
                     $id = $_POST['id'];
                     $nombre = $_POST['nombre'];
                     $firma = $_POST['firma'];
-                    $objeto->crear($id,$nombre,$firma);
-                    echo "El jesuita ".$nombre." ha sido añadido correctamente";
+                    try{
+                      $objeto->crear($id,$nombre,$firma);
+                      echo "El jesuita ".$nombre." ha sido añadido correctamente"; 
+                    }catch(mysqli_sql_exception){
+                        echo"No se pudo insertar al jesuita porque está repetido";
+                    }
                 }else{
                     echo "No se ha podido añadir el jesuita porque falta un campo";
                 }
