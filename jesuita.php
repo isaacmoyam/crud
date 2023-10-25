@@ -38,15 +38,30 @@
         public function crear($id,$nombre, $firma) {
             $sql = "INSERT INTO jesuita (idJesuita, nombre, firma) VALUES ('$id','$nombre', '$firma')";
             $this->conexion->query($sql);
+            echo "El jesuita ".$nombre." ha sido añadido correctamente"; 
         }
 
         public function actualizar($id, $nombre, $firma) {
-            $sql = "UPDATE jesuita SET nombre = '$nombre', firma = '$firma' WHERE idJesuita = $id";
-            $this->conexion->query($sql);
+            $sql = "SELECT * FROM jesuita where idJesuita = $id";
+            $resultado = $this->conexion->query($sql);
+            if ($resultado->num_rows > 0) {
+                $sql = "UPDATE jesuita SET nombre = '$nombre', firma = '$firma' WHERE idJesuita = $id";
+                $this->conexion->query($sql);
+                echo "El jesuita ".$nombre." ha sido actualizado correctamente";
+            }else{
+                echo "No puedes actualizar un jesuita que no existe";
+            }
         }
 
         public function eliminar($id) {
-            $sql = "DELETE FROM jesuita WHERE idJesuita = $id";
-            $this->conexion->query($sql);
+            $sql = "SELECT * FROM jesuita where idJesuita = $id";
+            $resultado = $this->conexion->query($sql);
+            if ($resultado->num_rows > 0) {
+                $sql = "DELETE FROM jesuita WHERE idJesuita = $id";
+                $this->conexion->query($sql);
+                echo "El jesuita ha sido borrado correctamente";
+            }else{
+                echo "No puedes borrar un jesuita que no existe";
+            }
         }
     }

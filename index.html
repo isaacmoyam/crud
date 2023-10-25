@@ -8,20 +8,14 @@
     <body>
         <h1>CRUD jesuita</h1>
         <hr>
-        <form action="crud.php" method="GET">
-            <label>Insertar filas</label>
-            <input type="radio" name="opcion" value="insert">
+        <form action="opciones_form.php" method="GET">
+            <input type="submit" name="insert" value="Insertar filas">
             <br>
-            <label>Leer filas</label>
-            <input type="radio" name="opcion" value="select">
+            <input type="submit" name="select" value="Leer Filas">
             <br>
-            <label">Actualizar filas</label>
-            <input type="radio" name="opcion" value="update">
+            <input type="submit" name="update" value="Actualizar filas">
             <br>
-            <label>Borrar filas</label>
-            <input type="radio" name="opcion" value="delete">
-            <br><br>
-            <input type="submit">
+            <input type="submit" name="delete" value="Borrar filas">
         </form>
     </body>
 </html>
