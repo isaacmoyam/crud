@@ -7,11 +7,11 @@
         private $contrasena = "";
         private $basededatos = "user2daw_BD1-11";
         */
-
+        
         private $host = "localhost";
         private $usuario = "root";
         private $contrasena = "";
-        private $basededatos = "¿?";
+        private $basededatos = "jesuitas";
 
         public $conexion;
 
