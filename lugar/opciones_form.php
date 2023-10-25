@@ -1,20 +1,20 @@
 <?php
-    include 'config.php';
-    include 'jesuita.php';
+    include '../config.php';
+    include 'Lugar.php';
 
     try{ 
         $conexion = new Configuracion();
-        $objeto = new Jesuita($conexion->conexion);
+        $objeto = new Lugar($conexion->conexion);
         
         if(isset($_GET['insert'])){
             echo '<br><form method="POST" action="procesar_formulario.php">';
-            echo '<label for="id">Id:</label>';
-            echo '<input type="number" min="0" name="id"<br>';
-            echo '<label for="nombre">Nombre:</label>';
-            echo '<input type="text" name="nombre"<br>';
-            echo '<label for="firma">Firma:</label>';
-            echo '<input type="text" name="firma"><br>';
-            echo '<input type="hidden" value="insert" name="opcion"><br><br>';
+            echo '<label for="ip">Ip:</label>';
+            echo '<input type="text" name="ip"<br>';
+            echo '<label for="lugar">Lugar:</label>';
+            echo '<input type="text" name="lugar"<br>';
+            echo '<label for="desc">Descripción:</label>';
+            echo '<input type="text" name="desc"><br>';
+            echo '<input type="hidden" value="insert" name="opcion"><br>';
             echo '<input type="submit">';
             echo '</form>';
         }
@@ -25,17 +25,17 @@
     
         if(isset($_GET['update'])){
             echo '<br><form method="POST" action="procesar_formulario.php">';
-            echo '<label for="id">Id:</label>';
-            echo '<input type="number" min="0" name="id"<br>';
-            echo '<input type="hidden" value="update" name="opcion"><br><br>';
+            echo '<label for="ip">Ip:</label>';
+            echo '<input type="text" name="ip"><br>';
+            echo '<input type="hidden" value="update" name="opcion"><br>';
             echo '<input type="submit">';
             echo '</form>';
         }
     
         if(isset($_GET['delete'])){
             echo '<br><form method="POST" action="procesar_formulario.php">';
-            echo '<label for="nombre">Id:</label>';
-            echo '<input type="number" min="0" name="id"<br>';
+            echo '<label for="nombre">Ip:</label>';
+            echo '<input type="text" name="ip"<br>';
             echo '<input type="hidden" value="delete" name="opcion"><br><br>';
             echo '<input type="submit">';
             echo '</form>';
