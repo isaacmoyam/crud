@@ -8,14 +8,17 @@
     </head>
     <body>
     <?php    
+        // Definición de la clase Lugar
         class Lugar {
             
             private $conexion;
 
+            // Constructor de la clase que recibe una conexión a la base de datos
             public function __construct($conexion) {
                 $this->conexion = $conexion;
             }
 
+            // Función para listar todos los lugares en una tabla
             public function listar() {
                 $sql = "SELECT * FROM lugar";
                 $resultado = $this->conexion->query($sql);
@@ -40,16 +43,16 @@
                     echo "<br>";
                     echo "<br>";
                     echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
-                }else{
+                } else {
                     echo "No se encontraron resultados.";
                     echo "<br>";
                     echo "<br>";
                     echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                 }
-                
                 $resultado->close();
             }
 
+            // Función para consultar y mostrar un lugar específico para su actualización
             public function consultar($ip) {
                 $sql = "SELECT * FROM lugar where ip = '$ip'";
                 $resultado = $this->conexion->query($sql);
@@ -66,7 +69,7 @@
                     echo '<input type="hidden" name="ip" value="'.$ip.'"><br>';
                     echo '<input type="submit">';
                     echo '</form>';
-                }else{
+                } else {
                     echo "No se encontraron resultados.";
                     echo "<br>";
                     echo "<br>";
@@ -75,7 +78,8 @@
                 $resultado->close();
             }
 
-            public function crear($ip,$lugar, $descripcion) {
+            // Función para crear un nuevo lugar
+            public function crear($ip, $lugar, $descripcion) {
                 $sql = "INSERT INTO lugar (ip, lugar, descripcion) VALUES ('$ip','$lugar', '$descripcion')";
                 $this->conexion->query($sql);
                 echo "El lugar ".$lugar." ha sido añadido correctamente";
@@ -84,6 +88,7 @@
                 echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
             }
 
+            // Función para actualizar un lugar existente
             public function actualizar($ip, $lugar, $descripcion) {
                 $sql = "SELECT * FROM lugar where ip = '$ip'";
                 $resultado = $this->conexion->query($sql);
@@ -94,7 +99,7 @@
                     echo "<br>";
                     echo "<br>";
                     echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
-                }else{
+                } else {
                     echo "No puedes actualizar un lugar que no existe";
                     echo "<br>";
                     echo "<br>";
@@ -102,6 +107,7 @@
                 }
             }
 
+            // Función para eliminar un lugar
             public function eliminar($ip) {
                 $sql = "SELECT * FROM lugar where ip = '$ip'";
                 $resultado = $this->conexion->query($sql);
@@ -112,7 +118,7 @@
                     echo "<br>";
                     echo "<br>";
                     echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
-                }else{
+                } else {
                     echo "No puedes borrar un lugar que no existe";
                     echo "<br>";
                     echo "<br>";

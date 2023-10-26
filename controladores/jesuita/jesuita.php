@@ -12,11 +12,14 @@
             
             private $conexion;
 
+            // Constructor de la clase que recibe una conexión a la base de datos como parámetro.
             public function __construct($conexion) {
                 $this->conexion = $conexion;
             }
 
-          /*  public function listar() {
+            /* 
+            public function listar() {
+                // Método para listar todos los registros de la tabla "jesuita".
                 $sql = "SELECT * FROM jesuita";
                 $resultado = $this->conexion->query($sql);
                 if ($resultado->num_rows > 0) {
@@ -41,13 +44,14 @@
                     echo "No se encontraron resultados.";
                     echo "<br>";
                     echo "<br>";
-                     echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                    echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
                 }
-                
                 $resultado->close();
-            }*/
+            }
+            */
 
             public function consultar($id) {
+                // Método para consultar un registro específico por su ID.
                 $sql = "SELECT * FROM jesuita where idJesuita = $id";
                 $resultado = $this->conexion->query($sql);
                 if ($resultado->num_rows > 0) {
@@ -73,6 +77,7 @@
             }
 
             public function crear($id,$nombre, $firma) {
+                // Método para agregar un nuevo registro.
                 $sql = "INSERT INTO jesuita (idJesuita, nombre, firma) VALUES ('$id','$nombre', '$firma')";
                 $this->conexion->query($sql);
                 echo "El jesuita ".$nombre." ha sido añadido correctamente"; 
@@ -82,6 +87,7 @@
             }
 
             public function actualizar($id, $nombre, $firma) {
+                // Método para actualizar un registro existente por su ID.
                 $sql = "SELECT * FROM jesuita where idJesuita = $id";
                 $resultado = $this->conexion->query($sql);
                 if ($resultado->num_rows > 0) {
@@ -91,7 +97,7 @@
                     echo "<br>";
                     echo "<br>";
                     echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
-                }else{
+                } else {
                     echo "No puedes actualizar un jesuita que no existe";
                     echo "<br>";
                     echo "<br>";
@@ -100,6 +106,7 @@
             }
 
             public function eliminar($id) {
+                // Método para eliminar un registro por su ID.
                 $sql = "SELECT * FROM jesuita where idJesuita = $id";
                 $resultado = $this->conexion->query($sql);
                 if ($resultado->num_rows > 0) {
@@ -109,7 +116,7 @@
                     echo "<br>";
                     echo "<br>";
                     echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
-                }else{
+                } else {
                     echo "No puedes borrar un jesuita que no existe";
                     echo "<br>";
                     echo "<br>";

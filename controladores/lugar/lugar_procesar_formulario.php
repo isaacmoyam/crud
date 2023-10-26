@@ -8,65 +8,72 @@
     </head>
     <body>
     <?php
-        include '../../conexion/conexiondb.php';
-        include 'lugar.php';
+        include '../../conexion/conexiondb.php'; // Incluye el archivo de conexión a la base de datos.
+        include 'lugar.php'; // Incluye el archivo que define la clase Lugar.
 
-        
-            if(isset($_POST['opcion'])){
-                $conexion = new Conexion();
-                $opcion = $_POST['opcion'];
-                $objeto = new Lugar($conexion->conexion);
-                switch($opcion){
-                    case 'insert':
-                        if(!empty($_POST['ip']) && !empty($_POST['lugar']) && !empty($_POST['desc'])){
-                            $ip = $_POST['ip'];
-                            $lugar = $_POST['lugar'];
-                            $descripcion = $_POST['desc'];
-                            try{
-                                $objeto->crear($ip,$lugar,$descripcion);
-                            }catch(mysqli_sql_exception $e){
-                                echo"No se pudo insertar al lugar porque está repetido";
-                                echo "<br>";
-                                echo "<br>";
-                                echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
-                            }
-                        }else{
-                            echo "No se ha podido añadir el lugar porque falta un campo";
+        if (isset($_POST['opcion'])) {
+            $conexion = new Conexion(); // Crea un objeto de la clase Conexion para establecer la conexión a la base de datos.
+            $opcion = $_POST['opcion']; // Obtiene la opción (acción) del formulario.
+            $objeto = new Lugar($conexion->conexion); // Crea un objeto de la clase Lugar y pasa la conexión como parámetro.
+
+            switch ($opcion) {
+                case 'insert':
+                    if (!empty($_POST['ip']) && !empty($_POST['lugar']) && !empty($_POST['desc'])) {
+                        // Verifica si los campos necesarios no están vacíos.
+                        $ip = $_POST['ip'];
+                        $lugar = $_POST['lugar'];
+                        $descripcion = $_POST['desc'];
+                        try {
+                            $objeto->crear($ip, $lugar, $descripcion); // El objeto llama al metodo crear() para insertar un nuevo lugar en la base de datos.
+                        } catch (mysqli_sql_exception $e) {
+                            // Muestra un mensaje de error si no se puede insertar el lugar (puede ser debido a duplicados).
+                            echo "No se pudo insertar el lugar porque está repetido";
                             echo "<br>";
                             echo "<br>";
                             echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                         }
-                        break;
-                    case 'update':
-                        if(!empty($_POST['ip'])){
-                            $ip = $_POST['ip'];
-                            $objeto->consultar($ip);
-                        }else{
-                            echo "No se ha podido modificar el lugar porque falta un campo";
-                            echo "<br>";
-                            echo "<br>";
-                            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
-                        }
-                        break;
-                    case 'delete':
-                        if(!empty($_POST['ip'])){
-                            $ip = $_POST['ip'];
-                            echo "<h3>¿Seguro que quieres borrar al lugar con ip: ".$ip."?</h3>";
-                            echo "<form action='lugar_actualizar_borrar.php' method='POST'>";
-                            echo "<input type='submit' name='si' value='Si'>";
-                            echo "<input type='submit' name='no' value='No'>";
-                            echo '<input type="hidden" name="opcion" value="delete"><br><br>';
-                            echo '<input type="hidden" name="ip" value="'.$ip.'"><br>';
-                            echo "</form>";
-                        }else{
-                            echo "No se ha podido borrar el lugar porque falta un campo";
-                            echo "<br>";
-                            echo "<br>";
-                            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
-                        }
-                        break;
-                } 
+                    } else {
+                        // Muestra un mensaje de error si falta algún campo en el formulario.
+                        echo "No se ha podido añadir el lugar porque falta un campo";
+                        echo "<br>";
+                        echo "<br>";
+                        echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                    }
+                    break;
+                case 'update':
+                    if (!empty($_POST['ip'])) {
+                        // Verifica si el campo "ip" no está vacío.
+                        $ip = $_POST['ip'];
+                        $objeto_actualizar = $objeto->consultar($ip); // Crea un objeto para consultar y actualizar un lugar.
+                    } else {
+                        // Muestra un mensaje de error si falta el campo "ip" en el formulario.
+                        echo "No se ha podido modificar el lugar porque falta un campo";
+                        echo "<br>";
+                        echo "<br>";
+                        echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                    }
+                    break;
+                case 'delete':
+                    if (!empty($_POST['ip'])) {
+                        // Verifica si el campo "ip" no está vacío.
+                        $ip = $_POST['ip'];
+                        echo "<h3>¿Seguro que quieres borrar al lugar con ip: " . $ip . "?</h3>";
+                        echo "<form action='lugar_actualizar_borrar.php' method='POST'>";
+                        echo "<input type='submit' name='si' value='Si'>";
+                        echo "<input type='submit' name='no' value='No'>";
+                        echo '<input type="hidden" name="opcion" value="delete"><br><br>';
+                        echo '<input type="hidden" name="ip" value="' . $ip . '"><br>';
+                        echo "</form>";
+                    } else {
+                        // Muestra un mensaje de error si falta el campo "ip" en el formulario.
+                        echo "No se ha podido borrar el lugar porque falta un campo";
+                        echo "<br>";
+                        echo "<br>";
+                        echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                    }
+                    break;
             }
+        }
     ?>
     </body>
 </html>
