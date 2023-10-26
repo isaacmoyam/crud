@@ -9,7 +9,7 @@
     <body>
     <?php
         include '../../conexion/conexiondb.php';
-        include 'Lugar.php';
+        include 'lugar.php';
 
         
             if(isset($_POST['opcion'])){
@@ -24,7 +24,7 @@
                             $descripcion = $_POST['desc'];
                             try{
                                 $objeto->crear($ip,$lugar,$descripcion);
-                            }catch(mysqli_sql_exception){
+                            }catch(mysqli_sql_exception $e){
                                 echo"No se pudo insertar al lugar porque está repetido";
                                 echo "<br>";
                                 echo "<br>";

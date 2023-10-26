@@ -50,7 +50,7 @@
                         break;
                 } 
             }
-        }catch (mysqli_sql_exception){
+        } catch (mysqli_sql_exception $e) {
             echo "Se perdió la conexión con la base de datos";
             echo "<br>";
             echo "<br>";
