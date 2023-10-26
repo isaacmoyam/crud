@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CRUD Lugar</title>
-        <link rel="stylesheet" href="../style.css">  
+        <link rel="stylesheet" href="../../css/style.css">   
     </head>
     <body>
     <?php    
@@ -37,8 +37,14 @@
                         echo "</tr>";
                     }
                     echo "</table>";
+                    echo "<br>";
+                    echo "<br>";
+                    echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                 }else{
                     echo "No se encontraron resultados.";
+                    echo "<br>";
+                    echo "<br>";
+                    echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                 }
                 
                 $resultado->close();
@@ -51,7 +57,7 @@
                     $fila = $resultado->fetch_assoc();
                     $lugar = $fila['lugar'];
                     $descripcion = $fila['descripcion'];
-                    echo '<br><form method="POST" action="actualizar_borrar.php">';
+                    echo '<br><form method="POST" action="lugar_actualizar_borrar.php">';
                     echo '<label for="nombre">Lugar:</label>';
                     echo '<input type="text" name="lugar" value="'.$lugar.'"><br>';
                     echo '<label for="firma">Descripción:</label>';
@@ -62,6 +68,9 @@
                     echo '</form>';
                 }else{
                     echo "No se encontraron resultados.";
+                    echo "<br>";
+                    echo "<br>";
+                    echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                 }
                 $resultado->close();
             }
@@ -69,7 +78,10 @@
             public function crear($ip,$lugar, $descripcion) {
                 $sql = "INSERT INTO lugar (ip, lugar, descripcion) VALUES ('$ip','$lugar', '$descripcion')";
                 $this->conexion->query($sql);
-                echo "El lugar ".$lugar." ha sido añadido correctamente"; 
+                echo "El lugar ".$lugar." ha sido añadido correctamente";
+                echo "<br>";
+                echo "<br>";
+                echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
             }
 
             public function actualizar($ip, $lugar, $descripcion) {
@@ -79,8 +91,14 @@
                     $sql = "UPDATE lugar SET lugar = '$lugar', descripcion = '$descripcion' WHERE ip = '$ip'";
                     $this->conexion->query($sql);
                     echo "El lugar ".$lugar." ha sido actualizado correctamente";
+                    echo "<br>";
+                    echo "<br>";
+                    echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                 }else{
                     echo "No puedes actualizar un lugar que no existe";
+                    echo "<br>";
+                    echo "<br>";
+                    echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                 }
             }
 
@@ -91,8 +109,14 @@
                     $sql = "DELETE FROM lugar WHERE ip = '$ip'";
                     $this->conexion->query($sql);
                     echo "El lugar ha sido borrado correctamente";
+                    echo "<br>";
+                    echo "<br>";
+                    echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                 }else{
                     echo "No puedes borrar un lugar que no existe";
+                    echo "<br>";
+                    echo "<br>";
+                    echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                 }
             }
         }

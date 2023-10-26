@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CRUD Jesuitas</title>
-        <link rel="stylesheet" href="../style.css">  
+        <link rel="stylesheet" href="../../css/style.css">    
     </head>
     <body>
     <?php    
@@ -16,7 +16,7 @@
                 $this->conexion = $conexion;
             }
 
-            public function listar() {
+          /*  public function listar() {
                 $sql = "SELECT * FROM jesuita";
                 $resultado = $this->conexion->query($sql);
                 if ($resultado->num_rows > 0) {
@@ -39,10 +39,13 @@
                     echo "</table>";
                 }else{
                     echo "No se encontraron resultados.";
+                    echo "<br>";
+                    echo "<br>";
+                     echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
                 }
                 
                 $resultado->close();
-            }
+            }*/
 
             public function consultar($id) {
                 $sql = "SELECT * FROM jesuita where idJesuita = $id";
@@ -51,7 +54,7 @@
                     $fila = $resultado->fetch_assoc();
                     $nombre = $fila['nombre'];
                     $firma = $fila['firma'];
-                    echo '<br><form method="POST" action="actualizar_borrar.php">';
+                    echo '<br><form method="POST" action="jesuita_actualizar_borrar.php">';
                     echo '<label for="nombre">Nombre:</label>';
                     echo '<input type="text" name="nombre" value="'.$nombre.'"><br>';
                     echo '<label for="firma">Firma:</label>';
@@ -62,6 +65,9 @@
                     echo '</form>';
                 }else{
                     echo "No se encontraron resultados.";
+                    echo "<br>";
+                    echo "<br>";
+                    echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
                 }
                 $resultado->close();
             }
@@ -70,6 +76,9 @@
                 $sql = "INSERT INTO jesuita (idJesuita, nombre, firma) VALUES ('$id','$nombre', '$firma')";
                 $this->conexion->query($sql);
                 echo "El jesuita ".$nombre." ha sido añadido correctamente"; 
+                echo "<br>";
+                echo "<br>";
+                echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
             }
 
             public function actualizar($id, $nombre, $firma) {
@@ -79,8 +88,14 @@
                     $sql = "UPDATE jesuita SET nombre = '$nombre', firma = '$firma' WHERE idJesuita = $id";
                     $this->conexion->query($sql);
                     echo "El jesuita ".$nombre." ha sido actualizado correctamente";
+                    echo "<br>";
+                    echo "<br>";
+                    echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
                 }else{
                     echo "No puedes actualizar un jesuita que no existe";
+                    echo "<br>";
+                    echo "<br>";
+                    echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
                 }
             }
 
@@ -91,8 +106,14 @@
                     $sql = "DELETE FROM jesuita WHERE idJesuita = $id";
                     $this->conexion->query($sql);
                     echo "El jesuita ha sido borrado correctamente";
+                    echo "<br>";
+                    echo "<br>";
+                    echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
                 }else{
                     echo "No puedes borrar un jesuita que no existe";
+                    echo "<br>";
+                    echo "<br>";
+                    echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
                 }
             }
         }

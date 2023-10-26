@@ -4,16 +4,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CRUD Lugar</title>
-        <link rel="stylesheet" href="../style.css">  
+        <link rel="stylesheet" href="../../css/style.css">   
     </head>
     <body>
     <?php
-        include '../config.php';
+        include '../../conexion/conexiondb.php';
         include 'lugar.php';
 
         try{
             if(isset($_POST['opcion'])){
-                $conexion = new Configuracion();
+                $conexion = new Conexion();
                 $opcion = $_POST['opcion'];
                 $objeto = new Lugar($conexion->conexion);
                 switch($opcion){    
@@ -25,6 +25,9 @@
                             $objeto->actualizar($ip,$lugar,$descripcion);
                         }else{
                             echo "No se ha podido modificar el lugar porque falta un campo";
+                            echo "<br>";
+                            echo "<br>";
+                            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                         }
                         break;
                     case 'delete':
@@ -34,15 +37,24 @@
                                 $objeto->eliminar($ip);
                             }else{
                                 echo "No se ha podido borrar el lugar porque falta un campo";
+                                echo "<br>";
+                                echo "<br>";
+                                echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                             } 
                         }else{
                             echo "No se borró el lugar";
+                            echo "<br>";
+                            echo "<br>";
+                            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                         } 
                         break;
                 } 
             }
         }catch (mysqli_sql_exception){
             echo "Se perdió la conexión con la base de datos";
+            echo "<br>";
+            echo "<br>";
+            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
         }
     ?>
     </body>

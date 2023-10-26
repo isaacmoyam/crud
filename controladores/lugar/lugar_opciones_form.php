@@ -4,19 +4,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CRUD Lugar</title>
-        <link rel="stylesheet" href="../style.css">  
+        <link rel="stylesheet" href="../../css/style.css">    
     </head>
     <body>
     <?php
-        include '../config.php';
+        include '../../conexion/conexiondb.php';
         include 'Lugar.php';
 
         try{ 
-            $conexion = new Configuracion();
+            $conexion = new Conexion();
             $objeto = new Lugar($conexion->conexion);
             
             if(isset($_GET['insert'])){
-                echo '<br><form method="POST" action="procesar_formulario.php">';
+                echo '<br><form method="POST" action="lugar_procesar_formulario.php">';
                 echo '<label for="ip">Ip:</label>';
                 echo '<input type="text" name="ip"<br>';
                 echo '<label for="lugar">Lugar:</label>';
@@ -33,7 +33,7 @@
             }
         
             if(isset($_GET['update'])){
-                echo '<br><form method="POST" action="procesar_formulario.php">';
+                echo '<br><form method="POST" action="lugar_procesar_formulario.php">';
                 echo '<label for="ip">Ip:</label>';
                 echo '<input type="text" name="ip"><br>';
                 echo '<input type="hidden" value="update" name="opcion"><br>';
@@ -42,7 +42,7 @@
             }
         
             if(isset($_GET['delete'])){
-                echo '<br><form method="POST" action="procesar_formulario.php">';
+                echo '<br><form method="POST" action="lugar_procesar_formulario.php">';
                 echo '<label for="nombre">Ip:</label>';
                 echo '<input type="text" name="ip"<br>';
                 echo '<input type="hidden" value="delete" name="opcion"><br><br>';
@@ -51,6 +51,9 @@
             }
         }catch (mysqli_sql_exception){
             echo "No se pudo conectar con la base de datos";
+            echo "<br>";
+            echo "<br>";
+            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
         }
     ?>
     </body>
