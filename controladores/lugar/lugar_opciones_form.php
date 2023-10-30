@@ -19,7 +19,7 @@
             switch($opcion){
                 // Si se recibe "insert" muestra un formulario para agregar un nuevo lugar.
                 case 'insert':
-                    echo '<br><form method="POST" action="lugar_procesar_formulario.php">';
+                    echo '<br><form method="GET" action="lugar_procesar_formulario.php">';
                     echo '<label for="ip">Ip:</label>';
                     echo '<input type="text" name="ip"<br>';
                     echo '<label for="lugar">Lugar:</label>';
@@ -36,30 +36,6 @@
                 case 'select':
                     // Si se recibe "select" llama al método "listar" del objeto para mostrar la lista de lugares.
                     $objeto->listar();
-                    break;
-                case 'update':
-                    // Si se recibe "update" muestra un formulario para actualizar un lugar.
-                    echo '<br><form method="POST" action="lugar_procesar_formulario.php">';
-                    echo '<label for="ip">Ip:</label>';
-                    echo '<input type="text" name="ip"><br>';
-                    echo '<input type="hidden" value="update" name="opcion"><br>';
-                    echo '<input type="submit">';
-                    echo '</form>';
-                    echo "<br>";
-                    echo "<br>";
-                    echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
-                    break;
-                case 'delete':
-                    // Si se recibe "delete" muestra un formulario para eliminar un lugar.
-                    echo '<br><form method="POST" action="lugar_procesar_formulario.php">';
-                    echo '<label for="nombre">Ip:</label>';
-                    echo '<input type="text" name="ip"<br>';
-                    echo '<input type="hidden" value="delete" name="opcion"><br><br>';
-                    echo '<input type="submit">';
-                    echo '</form>';
-                    echo "<br>";
-                    echo "<br>";
-                    echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                     break;
                 default:
                     echo "Esa opción no existe";

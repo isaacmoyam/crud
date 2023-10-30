@@ -28,6 +28,7 @@
                     echo "<th>IP</th>";
                     echo "<th>LUGAR</th>";
                     echo "<th>DESCRIPCION</th>";
+                    echo "<th></th>";
                     echo "</tr>";
                     while ($fila = $resultado->fetch_assoc()){
                         echo "<tr>";
@@ -37,6 +38,7 @@
                         echo "<td>".$ip."</td>";
                         echo "<td>".$lugar."</td>";
                         echo "<td>".$desc."</td>";
+                        echo "<td><a href='lugar_procesar_formulario.php?opcion=delete&ip=$ip'>🗑</a><a href='lugar_procesar_formulario.php?opcion=update&ip=$ip'>✍</a></td>";
                         echo "</tr>";
                     }
                     echo "</table>";
@@ -60,7 +62,7 @@
                     $fila = $resultado->fetch_assoc();
                     $lugar = $fila['lugar'];
                     $descripcion = $fila['descripcion'];
-                    echo '<br><form method="POST" action="lugar_actualizar_borrar.php">';
+                    echo '<br><form method="GET" action="lugar_actualizar_borrar.php">';
                     echo '<label for="nombre">Lugar:</label>';
                     echo '<input type="text" name="lugar" value="'.$lugar.'"><br>';
                     echo '<label for="firma">Descripción:</label>';

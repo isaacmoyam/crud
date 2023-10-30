@@ -11,18 +11,18 @@
         include '../../conexion/conexiondb.php'; // Incluye el archivo de conexión a la base de datos.
         include 'lugar.php'; // Incluye el archivo que define la clase Lugar.
 
-        if (isset($_POST['opcion'])) {
+        if (isset($_GET['opcion'])) {
             $conexion = new Conexion(); // Crea un objeto de la clase Conexion para establecer la conexión a la base de datos.
-            $opcion = $_POST['opcion']; // Obtiene la opción (acción) del formulario.
+            $opcion = $_GET['opcion']; // Obtiene la opción (acción) del formulario.
             $objeto = new Lugar($conexion->conexion); // Crea un objeto de la clase Lugar y pasa la conexión como parámetro.
 
             switch ($opcion) {
                 case 'insert':
-                    if (!empty($_POST['ip']) && !empty($_POST['lugar']) && !empty($_POST['desc'])) {
+                    if (!empty($_GET['ip']) && !empty($_GET['lugar']) && !empty($_GET['desc'])) {
                         // Verifica si los campos necesarios no están vacíos.
-                        $ip = $_POST['ip'];
-                        $lugar = $_POST['lugar'];
-                        $descripcion = $_POST['desc'];
+                        $ip = $_GET['ip'];
+                        $lugar = $_GET['lugar'];
+                        $descripcion = $_GET['desc'];
                         try {
                             $objeto->crear($ip, $lugar, $descripcion); // El objeto llama al metodo crear() para insertar un nuevo lugar en la base de datos.
                         } catch (mysqli_sql_exception $e) {
@@ -41,9 +41,9 @@
                     }
                     break;
                 case 'update':
-                    if (!empty($_POST['ip'])) {
+                    if (!empty($_GET['ip'])) {
                         // Verifica si el campo "ip" no está vacío.
-                        $ip = $_POST['ip'];
+                        $ip = $_GET['ip'];
                         $objeto_actualizar = $objeto->consultar($ip); // Crea un objeto para consultar y actualizar un lugar.
                     } else {
                         // Muestra un mensaje de error si falta el campo "ip" en el formulario.
@@ -54,11 +54,11 @@
                     }
                     break;
                 case 'delete':
-                    if (!empty($_POST['ip'])) {
+                    if (!empty($_GET['ip'])) {
                         // Verifica si el campo "ip" no está vacío.
-                        $ip = $_POST['ip'];
+                        $ip = $_GET['ip'];
                         echo "<h3>¿Seguro que quieres borrar al lugar con ip: " . $ip . "?</h3>";
-                        echo "<form action='lugar_actualizar_borrar.php' method='POST'>";
+                        echo "<form action='lugar_actualizar_borrar.php' method='GET'>";
                         echo "<input type='submit' name='si' value='Si'>";
                         echo "<input type='submit' name='no' value='No'>";
                         echo '<input type="hidden" name="opcion" value="delete"><br><br>';

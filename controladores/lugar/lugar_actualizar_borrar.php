@@ -12,20 +12,20 @@
         include 'lugar.php'; // Incluye el archivo que define la clase Lugar.
 
         try {
-            if (isset($_POST['opcion'])) {
+            if (isset($_GET['opcion'])) {
                 
                 $conexion = new Conexion(); // Crea un objeto de la clase Conexion para establecer la conexión a la base de datos.
-                $opcion = $_POST['opcion']; // Obtiene la opción (acción) del formulario.
+                $opcion = $_GET['opcion']; // Obtiene la opción (acción) del formulario.
                 $objeto = new Lugar($conexion->conexion); // Crea un objeto de la clase Lugar y pasa la conexión como parámetro.
 
                 // Realiza diferentes acciones según la opción seleccionada.
                 switch ($opcion) {
                     case 'update':
-                        if (!empty($_POST['ip']) && !empty($_POST['lugar']) && !empty($_POST['desc'])) {
+                        if (!empty($_GET['ip']) && !empty($_GET['lugar']) && !empty($_GET['desc'])) {
                             // Verifica si los campos necesarios no están vacíos.
-                            $ip = $_POST['ip'];
-                            $lugar = $_POST['lugar'];
-                            $descripcion = $_POST['desc'];
+                            $ip = $_GET['ip'];
+                            $lugar = $_GET['lugar'];
+                            $descripcion = $_GET['desc'];
                             $objeto->actualizar($ip, $lugar, $descripcion);
                         } else {
                             // Muestra un mensaje de error si falta algún campo.
@@ -36,10 +36,10 @@
                         }
                         break;
                     case 'delete':
-                        if (isset($_POST['si'])) {
-                            if (!empty($_POST['ip'])) {
+                        if (isset($_GET['si'])) {
+                            if (!empty($_GET['ip'])) {
                                 // Verifica si se ha confirmado la eliminación y el campo 'ip' no está vacío.
-                                $ip = $_POST['ip'];
+                                $ip = $_GET['ip'];
                                 $objeto->eliminar($ip);
                             } else {
                                 // Muestra un mensaje de error si falta algún campo.

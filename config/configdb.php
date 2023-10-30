@@ -5,7 +5,7 @@
     */
 
     /* HOSTING
-    define('HOST', '2daw.esvirgua.com');
+    define('HOST', '11.2daw.esvirgua.com');
     define('USUARIO', 'user2daw_11');
     define('CONTRASENA', '');
     define('BBDD', 'user2daw_BD1-11');
