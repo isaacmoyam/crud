@@ -58,12 +58,13 @@
                         // Verifica si el campo "ip" no está vacío.
                         $ip = $_GET['ip'];
                         echo "<h3>¿Seguro que quieres borrar al lugar con ip: " . $ip . "?</h3>";
-                        echo "<form action='lugar_actualizar_borrar.php' method='GET'>";
+                        /*echo "<form action='lugar_actualizar_borrar.php' method='GET'>";
                         echo "<input type='submit' name='si' value='Si'>";
                         echo "<input type='submit' name='no' value='No'>";
                         echo '<input type="hidden" name="opcion" value="delete"><br><br>';
                         echo '<input type="hidden" name="ip" value="' . $ip . '"><br>';
-                        echo "</form>";
+                        echo "</form>";*/
+                        echo "<a href='lugar_actualizar_borrar.php?si=1&opcion=$opcion&ip=$ip'>Si</a><a href='lugar_actualizar_borrar.php?si=0&opcion=$opcion'>No</a>";
                     } else {
                         // Muestra un mensaje de error si falta el campo "ip" en el formulario.
                         echo "No se ha podido borrar el lugar porque falta un campo";

@@ -36,7 +36,7 @@
                         }
                         break;
                     case 'delete':
-                        if (isset($_GET['si'])) {
+                        if ($_GET['si']== 1) {
                             if (!empty($_GET['ip'])) {
                                 // Verifica si se ha confirmado la eliminación y el campo 'ip' no está vacío.
                                 $ip = $_GET['ip'];

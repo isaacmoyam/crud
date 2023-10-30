@@ -21,6 +21,6 @@
     define('CONTRASENA', '');
 
     // Define la constante 'BBDD' para almacenar el nombre de la base de datos a la que se conectará.
-    define('BBDD', 'jesuitas');
+    define('BBDD', '¿?');
 	
 ?>
