@@ -27,6 +27,10 @@
                             $lugar = $_GET['lugar'];
                             $descripcion = $_GET['desc'];
                             $objeto->actualizar($ip, $lugar, $descripcion);
+                            echo "El lugar ".$lugar." ha sido actualizado correctamente";
+                            echo "<br>";
+                            echo "<br>";
+                            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                         } else {
                             // Muestra un mensaje de error si falta algún campo.
                             echo "No se ha podido modificar el lugar porque falta un campo";
@@ -41,6 +45,10 @@
                                 // Verifica si se ha confirmado la eliminación y el campo 'ip' no está vacío.
                                 $ip = $_GET['ip'];
                                 $objeto->eliminar($ip);
+                                echo "El lugar ha sido borrado correctamente";
+                                echo "<br>";
+                                echo "<br>";
+                                echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
                             } else {
                                 // Muestra un mensaje de error si falta algún campo.
                                 echo "No se ha podido borrar el lugar porque falta un campo";

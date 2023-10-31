@@ -13,19 +13,34 @@
 
         try {
             // Verifica si se ha enviado un formulario con la opción (acción) deseada.
-            if (isset($_POST['opcion'])) {
+            if (isset($_GET['opcion'])) {
+
                 $conexion = new Conexion(); // Crea un objeto "conexion" de la clase Conexion para establecer la conexión a la base de datos.
-                $opcion = $_POST['opcion']; // Obtiene la opción del formulario.
+                $opcion = $_GET['opcion']; // Obtiene la opción del formulario.
                 $objeto = new Jesuita($conexion->conexion); // Crea un objeto "objeto" de la clase Jesuita y pasa la conexión como parámetro.
 
                 // Realiza diferentes acciones según la opción seleccionada.
                 switch ($opcion) {
                     case 'update':
-                        if (isset($_POST['id']) && !empty($_POST['nombre']) && isset($_POST['firma'])) {
-                            $id = $_POST['id'];
-                            $nombre = $_POST['nombre'];
-                            $firma = $_POST['firma'];
-                            $objeto->actualizar($id, $nombre, $firma); // Llama al método 'actualizar' de la clase Jesuita.
+                        if (isset($_GET['id']) && !empty($_GET['nombre']) && isset($_GET['firma'])) {
+
+                            $id = $_GET['id'];
+                            $nombre = $_GET['nombre'];
+                            $firma = $_GET['firma'];
+                            $resultado = $objeto->actualizar($id, $nombre, $firma); // Llama al método 'actualizar' de la clase Jesuita.
+
+                            if($resultado == 0) {
+                                echo "El jesuita no existe";
+                                echo "<br>";
+                                echo "<br>";
+                                echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                            } else {
+                                echo "El jesuita ".$nombre." ha sido actualizado correctamente";
+                                echo "<br>";
+                                echo "<br>";
+                                echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                            } 
+                            
                         } else {
                             // Muestra un mensaje de error si faltan campos para la actualización.
                             echo "No se ha podido modificar el jesuita porque falta un campo";
@@ -35,10 +50,24 @@
                         }
                         break;
                     case 'delete':
-                        if (isset($_POST['si'])) {
-                            if (isset($_POST['id'])) {
-                                $id = $_POST['id'];
-                                $objeto->eliminar($id); // Llama al método 'eliminar' de la clase Jesuita.
+                       if ($_GET['si']== 1) {
+                            if (!empty($_GET['id'])) {
+
+                                $id = $_GET['id'];
+                                $resultado = $objeto->eliminar($id); // Llama al método 'eliminar' de la clase Jesuita.
+
+                                if($resultado == 0) {
+                                    echo "No puedes borrar un jesuita que no existe";
+                                    echo "<br>";
+                                    echo "<br>";
+                                    echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                                } else {
+                                    echo "El jesuita ha sido borrado correctamente";
+                                    echo "<br>";
+                                    echo "<br>";
+                                    echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                                }
+                                
                             } else {
                                 // Muestra un mensaje de error si falta el campo 'id' para la eliminación.
                                 echo "No se ha podido borrar el jesuita porque falta un campo";

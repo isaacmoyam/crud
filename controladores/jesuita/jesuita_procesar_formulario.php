@@ -13,23 +13,27 @@
 
         try {
             // Verifica si se ha enviado un formulario con la opción (acción) deseada.
-            if (isset($_POST['opcion'])) {
+            if (isset($_GET['opcion'])) {
                 $conexion = new Conexion(); // Crea un objeto de la clase Conexion para establecer la conexión a la base de datos.
-                $opcion = $_POST['opcion']; // Obtiene la opción (acción) del formulario.
+                $opcion = $_GET['opcion']; // Obtiene la opción (acción) del formulario.
                 $objeto = new Jesuita($conexion->conexion); // Crea un objeto de la clase Jesuita y pasa la conexión como parámetro.
 
                 // Realiza diferentes acciones según la opción seleccionada.
                 switch ($opcion) {
                     case 'insert':
-                        if (isset($_POST['id']) && !empty($_POST['nombre']) && isset($_POST['firma'])) {
-                            $id = $_POST['id'];
-                            $nombre = $_POST['nombre'];
-                            $firma = $_POST['firma'];
+                        if (isset($_GET['id']) && !empty($_GET['nombre']) && isset($_GET['firma'])) {
+                            $id = $_GET['id'];
+                            $nombre = $_GET['nombre'];
+                            $firma = $_GET['firma'];
                             try {
                                 $objeto->crear($id, $nombre, $firma); // Llama al método 'crear' de la clase Jesuita para añadir una fila.
+                                echo "El jesuita ".$nombre." ha sido añadido correctamente"; 
+                                echo "<br>";
+                                echo "<br>";
+                                echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
                             } catch (mysqli_sql_exception $e) {
                                 // Muestra un mensaje de error si no se puede insertar el jesuita (por duplicación o campos faltantes).
-                                echo "No se pudo insertar al jesuita porque está repetido o el número de puesto está vacío";
+                                echo "No se pudo insertar al jesuita porque está repetido";
                                 echo "<br>";
                                 echo "<br>";
                                 echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
@@ -43,9 +47,29 @@
                         }
                         break;
                     case 'update':
-                        if (isset($_POST['id'])) {
-                            $id = $_POST['id'];
-                            $objeto->consultar($id); // Llama al método 'consultar' de la clase Jesuita para obtener detalles del jesuita.
+                        if (isset($_GET['id'])) {
+                            $id = $_GET['id'];
+                            $resultado = $objeto->consultar($id); // Llama al método 'consultar' de la clase Jesuita para obtener detalles del jesuita.
+                            if ($resultado->num_rows > 0) {
+                                $fila = $resultado->fetch_assoc();
+                                $nombre = $fila['nombre'];
+                                $firma = $fila['firma'];
+                                echo '<br><form method="GET" action="jesuita_actualizar_borrar.php">';
+                                echo '<label for="nombre">Nombre:</label>';
+                                echo '<input type="text" name="nombre" value="'.$nombre.'"><br>';
+                                echo '<label for="firma">Firma:</label>';
+                                echo '<input type="text" name="firma" value="'.$firma.'"><br>';
+                                echo '<input type="hidden" name="opcion" value="update"><br><br>';
+                                echo '<input type="hidden" name="id" value="'.$id.'"><br><br>';
+                                echo '<input type="submit">';
+                                echo '</form>';
+                            }else{
+                                echo "No se encontraron resultados.";
+                                echo "<br>";
+                                echo "<br>";
+                                echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                            }
+                            $resultado->close();
                         } else {
                             // Muestra un mensaje de error si falta el campo 'id' para la actualización.
                             echo "No se ha podido modificar el jesuita porque falta un campo";
@@ -55,15 +79,10 @@
                         }
                         break;
                     case 'delete':
-                        if (isset($_POST['id'])) {
-                            $id = $_POST['id'];
+                        if (isset($_GET['id'])) {
+                            $id = $_GET['id'];
                             echo "<h3>¿Seguro que quieres borrar al jesuita con número de puesto: " . $id . "?</h3>";
-                            echo "<form action='jesuita_actualizar_borrar.php' method='POST'>";
-                            echo "<input type='submit' name='si' value='Si'>";
-                            echo "<input type='submit' name='no' value='No'>";
-                            echo '<input type="hidden" name="opcion" value="delete"><br><br>';
-                            echo '<input type="hidden" name="id" value="' . $id . '"><br><br>';
-                            echo "</form>";
+                            echo "<a href='jesuita_actualizar_borrar.php?si=1&opcion=$opcion&id=$id'>Si</a><a href='jesuita_actualizar_borrar.php?si=0&opcion=$opcion'>No</a>";
                         } else {
                             // Muestra un mensaje de error si falta el campo 'id' para la eliminación.
                             echo "No se ha podido borrar el jesuita porque falta un campo";

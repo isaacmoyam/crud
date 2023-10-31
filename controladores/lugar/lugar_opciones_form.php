@@ -35,7 +35,37 @@
                     break;
                 case 'select':
                     // Si se recibe "select" llama al método "listar" del objeto para mostrar la lista de lugares.
-                    $objeto->listar();
+                    $resultado = $objeto->listar();
+                    if ($resultado->num_rows > 0) {
+                        echo "<table border='2px'>";
+                        echo "<tr>";
+                        echo "<th>IP</th>";
+                        echo "<th>LUGAR</th>";
+                        echo "<th>DESCRIPCION</th>";
+                        echo "<th></th>";
+                        echo "</tr>";
+                        while ($fila = $resultado->fetch_assoc()){
+                            echo "<tr>";
+                            $ip = $fila['ip'];
+                            $lugar = $fila['lugar'];
+                            $desc = $fila['descripcion'];
+                            echo "<td>".$ip."</td>";
+                            echo "<td>".$lugar."</td>";
+                            echo "<td>".$desc."</td>";
+                            echo "<td><a href='lugar_procesar_formulario.php?opcion=delete&ip=$ip'>🗑</a><a href='lugar_procesar_formulario.php?opcion=update&ip=$ip'>✍</a></td>";
+                            echo "</tr>";
+                        }
+                        echo "</table>";
+                        echo "<br>";
+                        echo "<br>";
+                        echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                    } else {
+                        echo "No se encontraron resultados.";
+                        echo "<br>";
+                        echo "<br>";
+                        echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                    }
+                    $resultado->close();
                     break;
                 default:
                     echo "Esa opción no existe";
