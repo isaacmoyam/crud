@@ -9,7 +9,7 @@
     <body>
     <?php
         include '../../conexion/conexiondb.php'; // Incluye el archivo de conexión a la base de datos.
-        include 'jesuita.php'; // Incluye el archivo que define la clase Jesuita.
+        include '../../modelos/jesuita.php'; // Incluye el archivo que define la clase Jesuita.
 
         try {
             // Verifica si se ha enviado un formulario con la opción (acción) deseada.
@@ -30,20 +30,20 @@
                                 echo "El jesuita ".$nombre." ha sido añadido correctamente"; 
                                 echo "<br>";
                                 echo "<br>";
-                                echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                                echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                             } catch (mysqli_sql_exception $e) {
                                 // Muestra un mensaje de error si no se puede insertar el jesuita (por duplicación o campos faltantes).
                                 echo "No se pudo insertar al jesuita porque está repetido";
                                 echo "<br>";
                                 echo "<br>";
-                                echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                                echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                             }
                         } else {
                             // Muestra un mensaje de error si faltan campos para la inserción.
                             echo "No se ha podido añadir el jesuita porque falta un campo";
                             echo "<br>";
                             echo "<br>";
-                            echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                            echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                         }
                         break;
                     case 'update':
@@ -63,11 +63,14 @@
                                 echo '<input type="hidden" name="id" value="'.$id.'"><br><br>';
                                 echo '<input type="submit">';
                                 echo '</form>';
+                                echo "<br>";
+                                echo "<br>";
+                                echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                             }else{
                                 echo "No se encontraron resultados.";
                                 echo "<br>";
                                 echo "<br>";
-                                echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                                echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                             }
                             $resultado->close();
                         } else {
@@ -75,7 +78,7 @@
                             echo "No se ha podido modificar el jesuita porque falta un campo";
                             echo "<br>";
                             echo "<br>";
-                            echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                            echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                         }
                         break;
                     case 'delete':
@@ -88,7 +91,7 @@
                             echo "No se ha podido borrar el jesuita porque falta un campo";
                             echo "<br>";
                             echo "<br>";
-                            echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                            echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                         }
                         break;
                 } 
@@ -98,7 +101,7 @@
             echo "Se perdió la conexión con la base de datos";
             echo "<br>";
             echo "<br>";
-            echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+            echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
         }
     ?>
     </body>

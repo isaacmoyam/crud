@@ -9,7 +9,7 @@
     <body>    
     <?php
         include '../../conexion/conexiondb.php'; // Incluye el archivo de conexión a la base de datos.
-        include 'jesuita.php'; // Incluye el archivo que define la clase Jesuita.
+        include '../../modelos/jesuita.php'; // Incluye el archivo que define la clase Jesuita.
 
         try {
             // Verifica si se ha enviado un formulario con la opción (acción) deseada.
@@ -33,12 +33,12 @@
                                 echo "El jesuita no existe";
                                 echo "<br>";
                                 echo "<br>";
-                                echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                                echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                             } else {
                                 echo "El jesuita ".$nombre." ha sido actualizado correctamente";
                                 echo "<br>";
                                 echo "<br>";
-                                echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                                echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                             } 
                             
                         } else {
@@ -46,7 +46,7 @@
                             echo "No se ha podido modificar el jesuita porque falta un campo";
                             echo "<br>";
                             echo "<br>";
-                            echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                            echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                         }
                         break;
                     case 'delete':
@@ -60,12 +60,12 @@
                                     echo "No puedes borrar un jesuita que no existe";
                                     echo "<br>";
                                     echo "<br>";
-                                    echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                                    echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                                 } else {
                                     echo "El jesuita ha sido borrado correctamente";
                                     echo "<br>";
                                     echo "<br>";
-                                    echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                                    echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                                 }
                                 
                             } else {
@@ -73,14 +73,14 @@
                                 echo "No se ha podido borrar el jesuita porque falta un campo";
                                 echo "<br>";
                                 echo "<br>";
-                                echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                                echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                             }
                         } else {
                             // Muestra un mensaje si no se confirmó la eliminación ('si' no está definido en el formulario).
                             echo "No se borró al jesuita";
                             echo "<br>";
                             echo "<br>";
-                            echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+                            echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
                         }
                         break;
                 } 
@@ -90,7 +90,7 @@
             echo "Se perdió la conexión con la base de datos";
             echo "<br>";
             echo "<br>";
-            echo "<a href='../../vistas/crud_jesuita.html'>Volver</a>";
+            echo "<a href='../../vistas/jesuita/crud_jesuita.html'>Volver</a>";
         }
     ?>
     </body>

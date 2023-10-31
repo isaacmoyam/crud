@@ -9,7 +9,7 @@
     <body>
     <?php
         include '../../conexion/conexiondb.php'; // Incluye el archivo de conexión a la base de datos.
-        include 'lugar.php'; // Incluye el archivo que define la clase Lugar.
+        include '../../modelos/lugar.php'; // Incluye el archivo que define la clase Lugar.
         
         if (isset($_GET['opcion'])) {
             $conexion = new Conexion(); // Crea un objeto de la clase Conexion para establecer la conexión a la base de datos.
@@ -28,20 +28,20 @@
                             echo "El lugar ".$lugar." ha sido añadido correctamente";
                             echo "<br>";
                             echo "<br>";
-                            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                            echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                         } catch (mysqli_sql_exception $e) {
                             // Muestra un mensaje de error si no se puede insertar el lugar (puede ser debido a duplicados).
                             echo "No se pudo insertar el lugar porque está repetido";
                             echo "<br>";
                             echo "<br>";
-                            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                            echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                         }
                     } else {
                         // Muestra un mensaje de error si falta algún campo en el formulario.
                         echo "No se ha podido añadir el lugar porque falta un campo";
                         echo "<br>";
                         echo "<br>";
-                        echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                        echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                     }
                     break;
                 case 'update':
@@ -66,7 +66,7 @@
                             echo "No se encontraron resultados.";
                             echo "<br>";
                             echo "<br>";
-                            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                            echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                         }
                         $resultado->close();
                     } else {
@@ -74,7 +74,7 @@
                         echo "No se ha podido modificar el lugar porque falta un campo";
                         echo "<br>";
                         echo "<br>";
-                        echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                        echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                     }
                     break;
                 case 'delete':
@@ -88,7 +88,7 @@
                         echo "No se ha podido borrar el lugar porque falta un campo";
                         echo "<br>";
                         echo "<br>";
-                        echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                        echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                     }
                     break;
             }

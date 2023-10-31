@@ -9,7 +9,7 @@
     <body>
     <?php
         include '../../conexion/conexiondb.php'; // Incluye el archivo de conexión a la base de datos.
-        include 'lugar.php'; // Incluye el archivo que define la clase Lugar.
+        include '../../modelos/lugar.php'; // Incluye el archivo que define la clase Lugar.
 
         try {
             if (isset($_GET['opcion'])) {
@@ -30,13 +30,13 @@
                             echo "El lugar ".$lugar." ha sido actualizado correctamente";
                             echo "<br>";
                             echo "<br>";
-                            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                            echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                         } else {
                             // Muestra un mensaje de error si falta algún campo.
                             echo "No se ha podido modificar el lugar porque falta un campo";
                             echo "<br>";
                             echo "<br>";
-                            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                            echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                         }
                         break;
                     case 'delete':
@@ -48,20 +48,20 @@
                                 echo "El lugar ha sido borrado correctamente";
                                 echo "<br>";
                                 echo "<br>";
-                                echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                                echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                             } else {
                                 // Muestra un mensaje de error si falta algún campo.
                                 echo "No se ha podido borrar el lugar porque falta un campo";
                                 echo "<br>";
                                 echo "<br>";
-                                echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                                echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                             }
                         } else {
                             // Muestra un mensaje si no se confirma la eliminación.
                             echo "No se borró el lugar";
                             echo "<br>";
                             echo "<br>";
-                            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+                            echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                         }
                         break;
                 } 
@@ -71,7 +71,7 @@
             echo "Se perdió la conexión con la base de datos";
             echo "<br>";
             echo "<br>";
-            echo "<a href='../../vistas/crud_lugar.html'>Volver</a>";
+            echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
         }
     ?>
     </body>
