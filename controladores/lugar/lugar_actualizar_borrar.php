@@ -4,11 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CRUD Lugar</title>
-        <link rel="stylesheet" href="../../css/style.css">   
+        <link rel="stylesheet" href="../../css/style.css">    
     </head>
     <body>
     <?php
-        include '../../conexion/conexiondb.php'; // Incluye el archivo de conexión a la base de datos.
+        include '../../modelos/conexion/conexiondb.php'; // Incluye el archivo de conexión a la base de datos.
         include '../../modelos/lugar.php'; // Incluye el archivo que define la clase Lugar.
 
         try {

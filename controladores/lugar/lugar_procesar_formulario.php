@@ -8,7 +8,7 @@
     </head>
     <body>
     <?php
-        include '../../conexion/conexiondb.php'; // Incluye el archivo de conexión a la base de datos.
+        include '../../modelos/conexion/conexiondb.php'; // Incluye el archivo de conexión a la base de datos.
         include '../../modelos/lugar.php'; // Incluye el archivo que define la clase Lugar.
         
         if (isset($_GET['opcion'])) {
@@ -62,6 +62,9 @@
                             echo '<input type="hidden" name="ip" value="'.$ip.'"><br>';
                             echo '<input type="submit">';
                             echo '</form>';
+                            echo "<br>";
+                            echo "<br>";
+                            echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                         } else {
                             echo "No se encontraron resultados.";
                             echo "<br>";

@@ -8,7 +8,7 @@
     </head>
     <body>
     <?php
-        include '../../conexion/conexiondb.php'; // Incluye el archivo de conexión a la base de datos.
+        include '../../modelos/conexion/conexiondb.php'; // Incluye el archivo de conexión a la base de datos.
         include '../../modelos/lugar.php'; // Incluye el archivo que define la clase Lugar.
 
         try {
