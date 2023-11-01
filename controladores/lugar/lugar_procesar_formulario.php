@@ -53,7 +53,7 @@
                             $fila = $resultado->fetch_assoc();
                             $lugar = $fila['lugar'];
                             $descripcion = $fila['descripcion'];
-                            echo '<br><form method="GET" action="lugar_actualizar_borrar.php">';
+                            echo '<br><form method="GET" action="procesos.php">';
                             echo '<label for="nombre">Lugar:</label>';
                             echo '<input type="text" name="lugar" value="'.$lugar.'"><br>';
                             echo '<label for="firma">Descripción:</label>';
@@ -85,7 +85,7 @@
                         // Verifica si el campo "ip" no está vacío.
                         $ip = $_GET['ip'];
                         echo "<h3>¿Seguro que quieres borrar al lugar con ip: " . $ip . "?</h3>";
-                        echo "<a href='lugar_actualizar_borrar.php?si=1&opcion=$opcion&ip=$ip'>Si</a><a href='lugar_actualizar_borrar.php?si=0&opcion=$opcion'>No</a>";
+                        echo "<a href='procesos.php?si=1&opcion=$opcion&ip=$ip'>Si</a><a href='procesos.php?si=2&opcion=$opcion&ip=$ip'>No</a>";
                     } else {
                         // Muestra un mensaje de error si falta el campo "ip" en el formulario.
                         echo "No se ha podido borrar el lugar porque falta un campo";
