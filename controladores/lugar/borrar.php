@@ -16,7 +16,7 @@
                 echo "<br>";
                 echo "<br>";
                 echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
-            } elseif ($si == 2) {
+            } else if ($si == 2) {
                 echo "No se ha podido borrar el lugar porque falta un campo";
                 echo "<br>";
                 echo "<br>";
