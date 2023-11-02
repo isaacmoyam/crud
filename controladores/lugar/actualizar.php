@@ -5,7 +5,7 @@
     $conexion = new Conexion(); // Crea un objeto de la clase Conexion para establecer la conexión a la base de datos.
     $objeto = new Lugar($conexion->conexion); // Crea un objeto de la clase Lugar y pasa la conexión como parámetro.
 
-    if (!empty($_GET['ip']) && !empty($_GET['lugar']) && !empty($_GET['desc'])) {
+    if (!empty($_GET['ip']) && !empty($_GET['lugar']) && isset($_GET['desc'])) {
         $ip = $_GET['ip'];
         $lugar = $_GET['lugar'];
         $descripcion = $_GET['desc'];

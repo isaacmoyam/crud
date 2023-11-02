@@ -26,7 +26,7 @@
                 echo "<br>";
                 echo "<br>";
                 echo "<a href='crud_jesuita.html'>Volver</a>";
-                break;
+            break;
             case 'update':
                 echo '<br><form method="GET" action="../../controladores/jesuita/jesuita_procesar_formulario.php">';
                 echo '<label for "id">Número de puesto:</label>';
@@ -37,7 +37,7 @@
                 echo "<br>";
                 echo "<br>";
                 echo "<a href='crud_jesuita.html'>Volver</a>";
-                break;
+            break;
             case 'delete':
                 echo '<br><form method="GET" action="../../controladores/jesuita/jesuita_procesar_formulario.php">';
                 echo '<label for="id">Número de puesto:</label>';
@@ -48,10 +48,10 @@
                 echo "<br>";
                 echo "<br>";
                 echo "<a href='crud_jesuita.html'>Volver</a>";
-                break;
+            break;
             default:
                 echo "Esa opción no existe";
-                break;
+            break;
         }
     ?>
     </body>

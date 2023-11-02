@@ -18,24 +18,16 @@
             
             switch ($opcion) {
                 case 'insert':
-                    if (!empty($_GET['ip']) && !empty($_GET['lugar']) && !empty($_GET['desc'])) {
+                    if (!empty($_GET['ip']) && !empty($_GET['lugar']) && isset($_GET['desc'])) {
                         // Verifica si los campos necesarios no están vacíos.
                         $ip = $_GET['ip'];
                         $lugar = $_GET['lugar'];
                         $descripcion = $_GET['desc'];
-                        try {
-                            $objeto->crear($ip, $lugar, $descripcion); // El objeto llama al metodo crear() para insertar un nuevo lugar en la base de datos.
-                            echo "El lugar ".$lugar." ha sido añadido correctamente";
-                            echo "<br>";
-                            echo "<br>";
-                            echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
-                        } catch (mysqli_sql_exception $e) {
-                            // Muestra un mensaje de error si no se puede insertar el lugar (puede ser debido a duplicados).
-                            echo "No se pudo insertar el lugar porque está repetido";
-                            echo "<br>";
-                            echo "<br>";
-                            echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
-                        }
+
+                        $objeto->crear($ip, $lugar, $descripcion); // El objeto llama al metodo crear() para insertar un nuevo lugar en la base de datos.
+                        echo "<br>";
+                        echo "<br>";
+                        echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                     } else {
                         // Muestra un mensaje de error si falta algún campo en el formulario.
                         echo "No se ha podido añadir el lugar porque falta un campo";
@@ -43,7 +35,7 @@
                         echo "<br>";
                         echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                     }
-                    break;
+                break;
                 case 'update':
                     if (!empty($_GET['ip'])) {
                         // Verifica si el campo "ip" no está vacío.
@@ -53,6 +45,7 @@
                             $fila = $resultado->fetch_assoc();
                             $lugar = $fila['lugar'];
                             $descripcion = $fila['descripcion'];
+                    
                             echo '<br><form method="GET" action="procesos.php">';
                             echo '<label for="nombre">Lugar:</label>';
                             echo '<input type="text" name="lugar" value="'.$lugar.'"><br>';
@@ -79,7 +72,7 @@
                         echo "<br>";
                         echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                     }
-                    break;
+                break;
                 case 'delete':
                     if (!empty($_GET['ip'])) {
                         // Verifica si el campo "ip" no está vacío.
@@ -93,7 +86,7 @@
                         echo "<br>";
                         echo "<a href='../../vistas/lugar/crud_lugar.html'>Volver</a>";
                     }
-                    break;
+                break;
             }
         }
     ?>
