@@ -12,6 +12,12 @@
             }
         }
 
+        public function listar() {
+            $sql = "SELECT * FROM jesuita";
+            $resultado = $this->conexion->query($sql);
+            return $resultado;
+        }
+
         public function consultar($id) {
             // Método para consultar un registro específico por su ID.
             try {

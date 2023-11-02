@@ -50,7 +50,7 @@
                 break;
                 case 'delete':
                     if ($_GET['si']== 1) {
-                        if (!empty($_GET['id'])) {
+                        if (isset($_GET['id'])) {
 
                             $id = $_GET['id'];
                             $resultado = $objeto->eliminar($id); // Llama al método 'eliminar' de la clase Jesuita.
